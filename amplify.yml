@@ -3,7 +3,7 @@ frontend:
   phases:
     build:
       commands:
-        - npm i
+        - npm i --only=prod
         - npm run build
   artifacts:
     baseDirectory: /app/
