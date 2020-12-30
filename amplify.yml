@@ -2,13 +2,14 @@
 version: 1
 frontend:
   phases:
-    build:
+    preBuild:
       commands:
         - npm i --only=prod
+    build:
+      commands:
         - npm run build
   artifacts:
-    baseDirectory:
-      - /app
+    baseDirectory: /app
     files:
       - '**/*'
   cache:
