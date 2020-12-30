@@ -40,7 +40,7 @@ export const dark: IThemeColors = {
     default: "#FFFFFF"
   },
   divider: "#252728",
-  error: "#C22D74",
+  error: "#f34235",
   font: {
     button: "#202124",
     default: "#FCFCFC",
@@ -63,26 +63,26 @@ export const dark: IThemeColors = {
     textHover: "#616161"
   },
   paperBorder: "#252728",
-  primary: "#13BEBB",
-  secondary: "#21125E",
+  primary: "#09E9DF",
+  secondary: "#4d8482",
   theme: "dark"
 };
 export const light: IThemeColors = {
   autofill: "#f4f6c5",
   background: {
-    default: "#EFF5F8",
+    default: "#f3f2ef",
     paper: "#FFFFFF"
   },
   checkbox: {
     default: "#616161"
   },
   divider: "#EAEAEA",
-  error: "#C22D74",
+  error: "#f34235",
   font: {
     button: "#FFFFFF",
-    default: "#3D3D3D",
-    gray: "#616161",
-    textButton: "#06847B",
+    default: "#101415",
+    gray: "#3D4041",
+    textButton: "#1bc9b8",
     textDisabled: "#616161"
   },
   gray: {
@@ -95,12 +95,12 @@ export const light: IThemeColors = {
     disabled: "#EAEAEA",
     disabledBackground: "#F4F4F4",
     disabledText: "#9D9D9D",
-    error: "#8C2054",
+    error: "#f34235",
     text: "#3D3D3D",
     textHover: "#616161"
   },
-  paperBorder: "#EAEAEA",
-  primary: "#06847B",
-  secondary: "#21125E",
+  paperBorder: "#d6cec2",
+  primary: "#09ccc2",
+  secondary: "#4a7475",
   theme: "light"
 };
