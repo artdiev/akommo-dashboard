@@ -9,7 +9,7 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: /app/build
+    baseDirectory: /build/dashboard
     files:
       - '**/*'
   cache:
