@@ -61,7 +61,7 @@ $ npm i
 
 ### Configuration
 
-There are two environment variables available for configuration:
+Environment variables available for configuration:
 
 - `API_URI` (required) - URI of a running instance of Saleor GraphQL API.
   If you are running Saleor locally with the default settings, set `API_URI` to: `http://localhost:8000/graphql/`.
@@ -71,6 +71,18 @@ There are two environment variables available for configuration:
 
 - `STATIC_URL` - URL where the static files are located.
   E.g. if you use S3 bucket, you should set it to the bucket's URL. By default Saleor assumes you serve static files from the root of your site at `http://localhost:9000/`.
+
+#### Quick Links environment variables:
+
+- `MANUAL_URL` - URL to user documentation for the dashboard, eg: https://docs.saleor.io/docs/dashboard/index/
+
+- `DOCS_URL` - URL to other (technical) documentation.
+
+- `BLOG_URL` - URL to the blog CMS admin panel.
+
+- `STOREFRONT_URL` - URL to the main (gatsby) storefront.
+
+
 
 ### Development
 

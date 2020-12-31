@@ -21,6 +21,7 @@ import HomeAnalyticsCard from "../HomeAnalyticsCard";
 import HomeHeader from "../HomeHeader";
 import HomeNotificationTable from "../HomeNotificationTable/HomeNotificationTable";
 import HomeProductListCard from "../HomeProductListCard";
+import HomeQuickLinksCard from "../HomeQuickLinksCard";
 
 const useStyles = makeStyles(
   theme => ({
@@ -123,6 +124,8 @@ const HomePage: React.FC<HomePageProps> = props => {
               </HomeAnalyticsCard>
             </div>
           </RequirePermissions>
+          <HomeQuickLinksCard title="Quick Links" />
+          <CardSpacer />
           <HomeNotificationTable
             onOrdersToCaptureClick={onOrdersToCaptureClick}
             onOrdersToFulfillClick={onOrdersToFulfillClick}
