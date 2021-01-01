@@ -301,7 +301,6 @@ export const ProductUpdate: React.FC<ProductUpdateProps> = ({ id, params }) => {
         }
         taxTypes={data?.taxTypes}
         variants={maybe(() => product.variants)}
-        location={maybe(() => product.location)}
         onBack={handleBack}
         onDelete={() => openModal("remove")}
         onImageReorder={handleImageReorder}

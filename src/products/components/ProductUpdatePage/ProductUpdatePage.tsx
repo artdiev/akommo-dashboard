@@ -24,7 +24,6 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 import {
-  ProductDetails_location,
   ProductDetails_product,
   ProductDetails_product_images,
   ProductDetails_product_variants
@@ -55,7 +54,6 @@ export interface ProductUpdatePageProps extends ListActions {
   images: ProductDetails_product_images[];
   product: ProductDetails_product;
   header: string;
-  location: ProductDetails_location;
   saveButtonBarState: ConfirmButtonTransitionState;
   warehouses: WarehouseFragment[];
   taxTypes: TaxTypeFragment[];
@@ -99,7 +97,6 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
   header,
   placeholderImage,
   product,
-  location,
   saveButtonBarState,
   variants,
   warehouses,
@@ -286,7 +283,7 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                 <CardSpacer />
                 <ProductLocation
                   errors={errors}
-                  location={location}
+                  location={product.location}
                   loading={disabled}
                 />
               </div>
