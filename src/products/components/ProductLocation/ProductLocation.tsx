@@ -20,6 +20,7 @@
 </div> */
 }
 
+import { Button } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -27,11 +28,14 @@ import CardTitle from "@saleor/components/CardTitle";
 import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
 import { FormChange } from "@saleor/hooks/useForm";
 import { FormsetChange } from "@saleor/hooks/useFormset";
+import { ProductDetails_location } from "@saleor/products/types/ProductDetails";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 export interface ProductLocationProps {
   errors: ProductErrorFragment[];
+  location: ProductDetails_location;
+  loading?: boolean;
   // onChange: FormsetChange;
   // onFormDataChange: FormChange;
   // onWarehouseStockAdd: (warehouseId: string) => void;
@@ -95,31 +99,53 @@ export interface ProductLocationProps {
 //   }
 // );
 
-const ProductLocation: React.FC<ProductLocationProps> = () => {
+const ProductLocation: React.FC<ProductLocationProps> = ({
+  errors,
+  location,
+  loading
+}) => {
   // const classes = useStyles({});
   const intl = useIntl();
   const [isExpanded, setExpansionState] = React.useState(false);
+
+  const actionBtn = location ? (
+    <Button color="secondary" variant="text">
+      <FormattedMessage
+        defaultMessage="Remove the location"
+        description="button"
+      />
+    </Button>
+  ) : (
+    <Button color="primary" variant="text">
+      <FormattedMessage defaultMessage="Add a location" description="button" />
+    </Button>
+  );
 
   return (
     <Card>
       <CardTitle
         title={intl.formatMessage({
-          defaultMessage: "Address",
-          description: "product address, section header",
-          id: "productAddressHeader"
+          defaultMessage: "Location",
+          description: "product location, section header",
+          id: "productLocationHeader"
         })}
+        toolbar={actionBtn}
       />
       <CardContent>
-        <Typography>
-          <div>
-            <span>
-              <FormattedMessage
-                defaultMessage="Quantity"
-                description="header"
-              />
-            </span>
-          </div>
-        </Typography>
+        {location ? (
+          <div>text</div>
+        ) : (
+          <Typography>
+            <div>
+              <span>
+                <FormattedMessage
+                  defaultMessage="There is no location created for this element."
+                  description="header"
+                />
+              </span>
+            </div>
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );

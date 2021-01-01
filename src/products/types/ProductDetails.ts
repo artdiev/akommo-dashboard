@@ -2,6 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { AddressType } from "@saleor/customers/types";
 import { AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
@@ -203,6 +204,18 @@ export interface ProductDetails_product_taxType {
   description: string | null;
   taxCode: string | null;
 }
+export interface PointScalar {
+  __typename: "PointScalar";
+  type: string;
+  coordinates: string[];
+}
+
+export interface ProductDetails_location {
+  __typename: "Location";
+  id: string;
+  geography: PointScalar;
+  address: AddressType;
+}
 
 export interface ProductDetails_product {
   __typename: "Product";
@@ -222,6 +235,7 @@ export interface ProductDetails_product {
   collections: (ProductDetails_product_collections | null)[] | null;
   margin: ProductDetails_product_margin | null;
   purchaseCost: ProductDetails_product_purchaseCost | null;
+  location: ProductDetails_location | null;
   isAvailableForPurchase: boolean | null;
   isAvailable: boolean | null;
   isPublished: boolean;
