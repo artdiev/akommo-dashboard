@@ -24,6 +24,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 import {
+  ProductDetails_location,
   ProductDetails_product,
   ProductDetails_product_images,
   ProductDetails_product_variants
@@ -32,7 +33,7 @@ import { getChoices, ProductUpdatePageFormData } from "../../utils/data";
 import ProductAttributes, { ProductAttributeInput } from "../ProductAttributes";
 import ProductDetailsForm from "../ProductDetailsForm";
 import ProductImages from "../ProductImages";
-import ProductLocation, { ProductLocation_location } from "../ProductLocation";
+import ProductLocation from "../ProductLocation";
 import ProductOrganization from "../ProductOrganization";
 import ProductPricing from "../ProductPricing";
 import ProductShipping from "../ProductShipping/ProductShipping";
@@ -54,7 +55,7 @@ export interface ProductUpdatePageProps extends ListActions {
   images: ProductDetails_product_images[];
   product: ProductDetails_product;
   header: string;
-  location: ProductLocation_location;
+  location: ProductDetails_location;
   saveButtonBarState: ConfirmButtonTransitionState;
   warehouses: WarehouseFragment[];
   taxTypes: TaxTypeFragment[];
