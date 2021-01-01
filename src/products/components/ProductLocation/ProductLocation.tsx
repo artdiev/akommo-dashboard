@@ -26,8 +26,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardTitle from "@saleor/components/CardTitle";
 import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
-import { FormChange } from "@saleor/hooks/useForm";
-import { FormsetChange } from "@saleor/hooks/useFormset";
 import { ProductDetails_location } from "@saleor/products/types/ProductDetails";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -99,14 +97,10 @@ export interface ProductLocationProps {
 //   }
 // );
 
-const ProductLocation: React.FC<ProductLocationProps> = ({
-  errors,
-  location,
-  loading
-}) => {
+const ProductLocation: React.FC<ProductLocationProps> = ({ location }) => {
   // const classes = useStyles({});
   const intl = useIntl();
-  const [isExpanded, setExpansionState] = React.useState(false);
+  // const [isExpanded, setExpansionState] = React.useState(false);
 
   const actionBtn = location ? (
     <Button color="secondary" variant="text">

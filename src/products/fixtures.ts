@@ -200,6 +200,32 @@ export const product: (
       }
     }
   },
+  location: {
+    __typename: "Location",
+    id: "pad123123",
+    geography: {
+      __typename: "PointScalar",
+      type: "POINT",
+      coordinates: ["42", "15"]
+    },
+    address: {
+      id: "sadBee",
+      city: "Barcelona",
+      cityArea: "Barcelona",
+      companyName: "Akommo",
+      country: {
+        code: "ES",
+        country: "Spain"
+      },
+      countryArea: "test",
+      firstName: "John",
+      lastName: "Green",
+      phone: "+34111111111",
+      postalCode: "08005",
+      streetAddress1: "Line2",
+      streetAddress2: "Ramon Turro 100"
+    }
+  },
   privateMetadata: [],
   productType: {
     __typename: "ProductType",
