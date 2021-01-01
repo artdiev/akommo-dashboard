@@ -52,7 +52,7 @@ const HomeQuickLinksCard: React.FC<HomeQuickLinksCardProps> = props => {
   ];
   const linksDesc = [
     "Dashboard Manual",
-    "Technical Documentation",
+    "Technical Docs",
     "Blog CMS",
     "Client website"
   ];

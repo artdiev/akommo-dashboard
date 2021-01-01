@@ -32,6 +32,7 @@ import { getChoices, ProductUpdatePageFormData } from "../../utils/data";
 import ProductAttributes, { ProductAttributeInput } from "../ProductAttributes";
 import ProductDetailsForm from "../ProductDetailsForm";
 import ProductImages from "../ProductImages";
+import ProductLocation from "../ProductLocation";
 import ProductOrganization from "../ProductOrganization";
 import ProductPricing from "../ProductPricing";
 import ProductShipping from "../ProductShipping/ProductShipping";
@@ -277,6 +278,8 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                       "Add search engine title and description to make this product easier to find"
                   })}
                 />
+                <CardSpacer />
+                <ProductLocation />
                 <CardSpacer />
                 <Metadata data={data} onChange={handlers.changeMetadata} />
               </div>
