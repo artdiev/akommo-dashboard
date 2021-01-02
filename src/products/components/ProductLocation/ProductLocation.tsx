@@ -20,14 +20,15 @@
 </div> */
 }
 
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardTitle from "@saleor/components/CardTitle";
+import Skeleton from "@saleor/components/Skeleton";
 import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
 import { ProductDetails_location } from "@saleor/products/types/ProductDetails";
-import React from "react";
+import React, { ReactNode, useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 export interface ProductLocationProps {
@@ -97,23 +98,80 @@ export interface ProductLocationProps {
 //   }
 // );
 
-const ProductLocation: React.FC<ProductLocationProps> = ({ location }) => {
+const ProductLocation: React.FC<ProductLocationProps> = ({
+  location,
+  loading
+}) => {
   // const classes = useStyles({});
   const intl = useIntl();
   // const [isExpanded, setExpansionState] = React.useState(false);
 
   const actionBtn = location ? (
-    <Button color="secondary" variant="text">
+    [
+      <Button color="secondary" variant="text">
+        <FormattedMessage defaultMessage="Delete" description="button" />
+      </Button>,
+      <Button color="primary" variant="text">
+        <FormattedMessage defaultMessage="Edit" description="button" />
+      </Button>
+    ]
+  ) : (
+    <Button color="primary" variant="text">
       <FormattedMessage
-        defaultMessage="Remove the location"
+        defaultMessage="Create a location"
         description="button"
       />
     </Button>
-  ) : (
-    <Button color="primary" variant="text">
-      <FormattedMessage defaultMessage="Add a location" description="button" />
-    </Button>
   );
+
+  const addressText = useMemo(() => {
+    const res = [];
+    for (const field in location?.address) {
+      if (
+        location.address.hasOwnProperty(field) &&
+        location.address[field] &&
+        field !== "id" &&
+        field !== "__typename"
+      ) {
+        const node = (
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body1">
+              {field === "country"
+                ? location.address[field].country
+                : location.address[field]}
+            </Typography>
+          </Grid>
+        );
+        res.push(node);
+      }
+    }
+    return res;
+  }, [location]);
+
+  let cardContent: ReactNode;
+
+  if (loading) {
+    cardContent = (
+      <CardContent>
+        <Skeleton />
+      </CardContent>
+    );
+  } else if (location) {
+    cardContent = <Grid container>{addressText}</Grid>;
+  } else {
+    cardContent = (
+      <Typography>
+        <div>
+          <span>
+            <FormattedMessage
+              defaultMessage="There is no location created for this element"
+              description="header"
+            />
+          </span>
+        </div>
+      </Typography>
+    );
+  }
 
   return (
     <Card>
@@ -125,22 +183,7 @@ const ProductLocation: React.FC<ProductLocationProps> = ({ location }) => {
         })}
         toolbar={actionBtn}
       />
-      <CardContent>
-        {location ? (
-          <div>text</div>
-        ) : (
-          <Typography>
-            <div>
-              <span>
-                <FormattedMessage
-                  defaultMessage="There is no location created for this element."
-                  description="header"
-                />
-              </span>
-            </div>
-          </Typography>
-        )}
-      </CardContent>
+      <CardContent>{cardContent}</CardContent>
     </Card>
   );
 };

@@ -283,7 +283,7 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                 <CardSpacer />
                 <ProductLocation
                   errors={errors}
-                  location={product.location}
+                  location={product?.location}
                   loading={disabled}
                 />
               </div>
