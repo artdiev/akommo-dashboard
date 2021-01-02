@@ -209,11 +209,13 @@ export const product: (
       coordinates: ["42", "15"]
     },
     address: {
+      __typename: "Address",
       id: "sadBee",
       city: "Barcelona",
       cityArea: "Barcelona",
       companyName: "Akommo",
       country: {
+        __typename: "CountryDisplay",
         code: "ES",
         country: "Spain"
       },
