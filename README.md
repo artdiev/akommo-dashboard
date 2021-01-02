@@ -3,6 +3,8 @@
 A GraphQL-powered, single-page dashboard application for [Saleor](https://github.com/mirumee/saleor/).
 This is a fork of the original Mirumee dashboard with customized logos, style and added views for our custom saleor API.
 
+Please note that logos included in this fork are the property of their respective owners.
+
 ## Demo
 
 See the [public demo](https://demo.saleor.io/dashboard/) of Saleor Dashboard!
