@@ -1,5 +1,5 @@
 import NotFoundPage from "@saleor/components/NotFoundPage";
-// import { WindowTitle } from "@saleor/components/WindowTitle";
+import { WindowTitle } from "@saleor/components/WindowTitle";
 import useNavigator from "@saleor/hooks/useNavigator";
 // import useNotifier from "@saleor/hooks/useNotifier";
 // import useShop from "@saleor/hooks/useShop";
