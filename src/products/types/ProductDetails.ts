@@ -2,7 +2,6 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AddressType } from "@saleor/customers/types";
 import { AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
@@ -204,17 +203,34 @@ export interface ProductDetails_product_taxType {
   description: string | null;
   taxCode: string | null;
 }
-export interface PointScalar {
-  __typename: "PointScalar";
-  type: string;
-  coordinates: string[];
+
+export interface ProductDetails_product_location_address_country {
+  __typename: "CountryDisplay";
+  code: string;
+  country: string;
 }
 
-export interface ProductDetails_location {
+export interface ProductDetails_product_location_address {
+  __typename: "Address";
+  city: string;
+  cityArea: string;
+  companyName: string;
+  country: ProductDetails_product_location_address_country;
+  countryArea: string;
+  firstName: string;
+  id: string;
+  lastName: string;
+  phone: string | null;
+  postalCode: string;
+  streetAddress1: string;
+  streetAddress2: string;
+}
+
+export interface ProductDetails_product_location {
   __typename: "Location";
   id: string;
-  geography: PointScalar;
-  address: AddressType;
+  geography: any;
+  address: ProductDetails_product_location_address;
 }
 
 export interface ProductDetails_product {
@@ -235,7 +251,6 @@ export interface ProductDetails_product {
   collections: (ProductDetails_product_collections | null)[] | null;
   margin: ProductDetails_product_margin | null;
   purchaseCost: ProductDetails_product_purchaseCost | null;
-  location: ProductDetails_location | null;
   isAvailableForPurchase: boolean | null;
   isAvailable: boolean | null;
   isPublished: boolean;
@@ -247,6 +262,7 @@ export interface ProductDetails_product {
   taxType: ProductDetails_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+  location: ProductDetails_product_location | null;
 }
 
 export interface ProductDetails_taxTypes {

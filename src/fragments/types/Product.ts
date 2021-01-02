@@ -204,6 +204,35 @@ export interface Product_taxType {
   taxCode: string | null;
 }
 
+export interface Product_location_address_country {
+  __typename: "CountryDisplay";
+  code: string;
+  country: string;
+}
+
+export interface Product_location_address {
+  __typename: "Address";
+  city: string;
+  cityArea: string;
+  companyName: string;
+  country: Product_location_address_country;
+  countryArea: string;
+  firstName: string;
+  id: string;
+  lastName: string;
+  phone: string | null;
+  postalCode: string;
+  streetAddress1: string;
+  streetAddress2: string;
+}
+
+export interface Product_location {
+  __typename: "Location";
+  id: string;
+  geography: any;
+  address: Product_location_address;
+}
+
 export interface Product {
   __typename: "Product";
   id: string;
@@ -233,4 +262,5 @@ export interface Product {
   taxType: Product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+  location: Product_location | null;
 }

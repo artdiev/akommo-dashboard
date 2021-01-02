@@ -149,3 +149,10 @@ export const metadataErrorFragment = gql`
     field
   }
 `;
+
+export const locationErrorFragment = gql`
+  fragment LocationErrorFragment on LocationError {
+    code
+    field
+  }
+`;

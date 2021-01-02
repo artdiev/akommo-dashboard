@@ -210,6 +210,35 @@ export interface ProductVariantSetDefault_productVariantSetDefault_product_taxTy
   taxCode: string | null;
 }
 
+export interface ProductVariantSetDefault_productVariantSetDefault_product_location_address_country {
+  __typename: "CountryDisplay";
+  code: string;
+  country: string;
+}
+
+export interface ProductVariantSetDefault_productVariantSetDefault_product_location_address {
+  __typename: "Address";
+  city: string;
+  cityArea: string;
+  companyName: string;
+  country: ProductVariantSetDefault_productVariantSetDefault_product_location_address_country;
+  countryArea: string;
+  firstName: string;
+  id: string;
+  lastName: string;
+  phone: string | null;
+  postalCode: string;
+  streetAddress1: string;
+  streetAddress2: string;
+}
+
+export interface ProductVariantSetDefault_productVariantSetDefault_product_location {
+  __typename: "Location";
+  id: string;
+  geography: any;
+  address: ProductVariantSetDefault_productVariantSetDefault_product_location_address;
+}
+
 export interface ProductVariantSetDefault_productVariantSetDefault_product {
   __typename: "Product";
   id: string;
@@ -239,6 +268,7 @@ export interface ProductVariantSetDefault_productVariantSetDefault_product {
   taxType: ProductVariantSetDefault_productVariantSetDefault_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+  location: ProductVariantSetDefault_productVariantSetDefault_product_location | null;
 }
 
 export interface ProductVariantSetDefault_productVariantSetDefault {

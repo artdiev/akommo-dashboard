@@ -99,6 +99,10 @@ export const productVariantAddPath = (productId: string) =>
 export const productVariantAddUrl = (productId: string): string =>
   productVariantAddPath(encodeURIComponent(productId));
 
+export const productLocationPath = (productId: string, locationId: string) =>
+  urlJoin(productSection, productId, "location", locationId);
+export const productLocationUrl = productLocationPath;
+
 export const productImagePath = (productId: string, imageId: string) =>
   urlJoin(productSection, productId, "image", imageId);
 export type ProductImageUrlDialog = "remove";

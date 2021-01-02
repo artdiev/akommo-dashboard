@@ -1628,6 +1628,11 @@ input DateRangeInput {
   lte: Date
 }
 
+type DateTimeRangeOutput {
+  gte: DateTime
+  lte: DateTime
+}
+
 scalar DateTime
 
 input DateTimeRangeInput {
@@ -2292,6 +2297,95 @@ type LanguageDisplay {
   language: String!
 }
 
+scalar PointScalar
+
+type Location implements Node {
+  id: ID!
+  address: Address!
+  geography: PointScalar!
+  product: Product!
+}
+
+input LocationAddressInput {
+  streetAddress1: String!
+  streetAddress2: String
+  city: String!
+  cityArea: String
+  postalCode: String
+  country: CountryCode!
+  countryArea: String
+  phone: String
+}
+
+type LocationCountableConnection {
+  pageInfo: PageInfo!
+  edges: [LocationCountableEdge!]!
+  totalCount: Int
+}
+
+type LocationCountableEdge {
+  node: Location!
+  cursor: String!
+}
+
+type LocationCreate {
+  errors: [Error!]!
+    @deprecated(
+      reason: "Use typed errors with error codes. This field will be removed after 2020-07-31."
+    )
+  locationErrors: [LocationError!]!
+  location: Location
+}
+
+input LocationCreateInput {
+  geography: String
+  product: ID!
+  address: LocationAddressInput!
+}
+
+type LocationDelete {
+  errors: [Error!]!
+    @deprecated(
+      reason: "Use typed errors with error codes. This field will be removed after 2020-07-31."
+    )
+  locationErrors: [LocationError!]!
+  location: Location
+}
+
+type LocationError {
+  field: String
+  message: String
+  code: LocationErrorCode!
+}
+
+enum LocationErrorCode {
+  ALREADY_EXISTS
+  GRAPHQL_ERROR
+  INVALID
+  NOT_FOUND
+  REQUIRED
+  UNIQUE
+}
+
+input LocationFilterInput {
+  search: String
+  ids: [ID]
+}
+
+type LocationUpdate {
+  errors: [Error!]!
+    @deprecated(
+      reason: "Use typed errors with error codes. This field will be removed after 2020-07-31."
+    )
+  locationErrors: [LocationError!]!
+  location: Location
+}
+
+input LocationUpdateInput {
+  geography: String
+  address: LocationAddressInput
+}
+
 type Manifest {
   identifier: String!
   version: String!
@@ -2577,6 +2671,30 @@ input MoveProductInput {
 }
 
 type Mutation {
+  locationCreate(
+    input: LocationCreateInput!
+  ): LocationCreate
+  locationUpdate(
+    id: ID!
+    input: LocationUpdateInput!
+  ): LocationUpdate
+  locationDelete(
+    id: ID!
+  ): LocationDelete
+  wishlistCreate(
+    input: WishlistCreateInput!
+  ): WishlistCreate
+  wishlistDelete(
+    id: ID!
+  ): WishlistDelete
+  wishlistAddVariant(
+    id: ID
+    input: [WishlistProductVariantInput]!
+  ): WishlistAddProductVariant
+  wishlistRemoveVariant(
+    id: ID
+    input: [WishlistProductVariantInput]!
+  ): WishlistRemoveProductVariant
   webhookCreate(input: WebhookCreateInput!): WebhookCreate
   webhookDelete(id: ID!): WebhookDelete
   webhookUpdate(id: ID!, input: WebhookUpdateInput!): WebhookUpdate
@@ -3677,6 +3795,7 @@ type Product implements Node & ObjectWithMetadata {
   availableForPurchase: Date
   visibleInListings: Boolean!
   defaultVariant: ProductVariant
+  location: Location
   privateMetadata: [MetadataItem]!
   metadata: [MetadataItem]!
   privateMeta: [MetaStore]! @deprecated(reason: "Use the `privetaMetadata` field. This field will be removed after 2020-07-31.")
@@ -4283,6 +4402,16 @@ type ProductVariantUpdatePrivateMeta {
 }
 
 type Query {
+  location(
+    id: ID!
+  ): Location
+  locations(
+    filter: LocationFilterInput
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): LocationCountableConnection
   webhook(id: ID!): Webhook
   webhooks(sortBy: WebhookSortingInput, filter: WebhookFilterInput, before: String, after: String, first: Int, last: Int): WebhookCountableConnection @deprecated(reason: "Use webhooks field on app(s) query instead. This field will be removed after 2020-07-31.")
   webhookEvents: [WebhookEvent]
@@ -5207,6 +5336,12 @@ type User implements Node & ObjectWithMetadata {
   avatar(size: Int): Image
   events: [CustomerEvent]
   storedPaymentSources: [PaymentSource]
+  wishlists(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): WishlistCountableConnection
 }
 
 type UserAvatarDelete {
@@ -5731,4 +5866,114 @@ union _Entity = Address | User | Group | ServiceAccount | App | ProductVariant |
 
 type _Service {
   sdl: String
+}
+
+
+type Wishlist implements Node {
+  id: ID!
+  name: String!
+  isArchived: Boolean!
+  user: User!
+  createdAt: DateTime!
+  dateTimeRange: DateTimeRangeOutput
+  items(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    id: ID
+  ): WishlistItemCountableConnection!
+}
+
+type WishlistAddProductVariant {
+  errors: [Error!]!
+    @deprecated(
+      reason: "Use typed errors with error codes. This field will be removed after 2020-07-31."
+    )
+  wishlistErrors: [WishlistError!]!
+}
+
+type WishlistCountableConnection {
+  pageInfo: PageInfo!
+  edges: [WishlistCountableEdge!]!
+  totalCount: Int
+}
+
+type WishlistCountableEdge {
+  node: Wishlist!
+  cursor: String!
+}
+
+type WishlistCreate {
+  errors: [Error!]!
+    @deprecated(
+      reason: "Use typed errors with error codes. This field will be removed after 2020-07-31."
+    )
+  wishlistErrors: [WishlistErrorCode!]!
+  wishlist: Wishlist
+}
+
+input WishlistCreateInput {
+  name: String!
+  isArchived: Boolean
+  user: ID!
+  dateTimeRange: DateTimeRangeInput
+}
+
+type WishlistDelete {
+  errors: [Error!]!
+    @deprecated(
+      reason: "Use typed errors with error codes. This field will be removed after 2020-07-31."
+    )
+  wishlistErrors: [WishlistErrorCode!]!
+  wishlist: Wishlist
+}
+
+type WishlistError {
+  field: String
+  message: String
+  code: WishlistErrorCode!
+}
+
+enum WishlistErrorCode {
+  GRAPHQL_ERROR
+  INVALID
+  NOT_FOUND
+  REQUIRED
+  UNIQUE
+}
+
+type WishlistItem implements Node {
+  id: ID!
+  wishlist: Wishlist!
+  product: Product!
+  variants(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): ProductVariantCountableConnection!
+}
+
+type WishlistItemCountableConnection {
+  pageInfo: PageInfo!
+  edges: [WishlistItemCountableEdge!]!
+  totalCount: Int
+}
+
+type WishlistItemCountableEdge {
+  node: WishlistItem!
+  cursor: String!
+}
+
+input WishlistProductVariantInput {
+  variantId: ID!
+}
+
+type WishlistRemoveProductVariant {
+  errors: [Error!]!
+    @deprecated(
+      reason: "Use typed errors with error codes. This field will be removed after 2020-07-31."
+    )
+  wishlistErrors: [WishlistError!]!
 }

@@ -2,10 +2,12 @@ import {
   bulkProductErrorFragment,
   bulkStockErrorFragment,
   exportErrorFragment,
+  locationErrorFragment,
   productErrorFragment,
   productErrorWithAttributesFragment,
   stockErrorFragment
 } from "@saleor/fragments/errors";
+import { fragmentLocation } from "@saleor/fragments/location";
 import {
   exportFileFragment,
   fragmentVariant,
@@ -454,6 +456,51 @@ export const useVariantImageUnassignMutation = makeMutation<
   VariantImageUnassign,
   VariantImageUnassignVariables
 >(variantImageUnassignMutation);
+
+export const locationCreateMutation = gql`
+  ${locationErrorFragment}
+  ${fragmentLocation}
+  mutation locationCreate($input: LocationCreateInput!) {
+    locationCreate(input: $input) {
+      locationErrors {
+        ...LocationErrorFragment
+      }
+      location {
+        ...LocationFragment
+      }
+    }
+  }
+`;
+export const useLocationCreateMutation = makeMutation(locationCreateMutation);
+
+export const locationUpdateMutation = gql`
+  ${locationErrorFragment}
+  ${fragmentLocation}
+  mutation locationUpdate($id: ID!, $input: LocationUpdateInput!) {
+    locationUpdate(id: $id, input: $input) {
+      locationErrors {
+        ...LocationErrorFragment
+      }
+      location {
+        ...LocationFragment
+      }
+    }
+  }
+`;
+export const useLocationUpdateMutation = makeMutation(locationUpdateMutation);
+
+export const locationDeleteMutation = gql`
+  ${locationErrorFragment}
+  ${fragmentLocation}
+  mutation locationDelete($id: ID!) {
+    locationDelete(id: $id) {
+      locationErrors {
+        ...LocationErrorFragment
+      }
+    }
+  }
+`;
+export const useLocationDeleteMutation = makeMutation(locationDeleteMutation);
 
 export const productBulkDeleteMutation = gql`
   ${productErrorFragment}

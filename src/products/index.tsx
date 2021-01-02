@@ -14,6 +14,7 @@ import {
   productListPath,
   ProductListUrlQueryParams,
   ProductListUrlSortField,
+  productLocationPath,
   productPath,
   ProductUrlQueryParams,
   productVariantAddPath,
@@ -24,6 +25,7 @@ import {
 import ProductCreate from "./views/ProductCreate";
 import ProductImageComponent from "./views/ProductImage";
 import ProductListComponent from "./views/ProductList";
+import ProductLocationUpdate from "./views/ProductLocationUpdate/ProductLocationUpdate";
 import ProductUpdateComponent from "./views/ProductUpdate";
 import ProductVariantComponent from "./views/ProductVariant";
 import ProductVariantCreateComponent from "./views/ProductVariantCreate";
@@ -103,6 +105,10 @@ const ProductVariantCreator: React.FC<RouteComponentProps<{
   <ProductVariantCreatorComponent id={decodeURIComponent(match.params.id)} />
 );
 
+const ProductLocation: React.FC<RouteComponentProps<{ id: string }>> = ({
+  match
+}) => <ProductLocationUpdate id={decodeURIComponent(match.params.id)} />;
+
 const Component = () => {
   const intl = useIntl();
 
@@ -128,6 +134,10 @@ const Component = () => {
         <Route
           path={productImagePath(":productId", ":imageId")}
           component={ProductImage}
+        />
+        <Route
+          path={productLocationPath(":productId", ":locationId")}
+          component={ProductLocation}
         />
         <Route path={productPath(":id")} component={ProductUpdate} />
       </Switch>

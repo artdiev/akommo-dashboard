@@ -494,6 +494,15 @@ export enum LanguageCodeEnum {
   ZH_HANT = "ZH_HANT",
 }
 
+export enum LocationErrorCode {
+  ALREADY_EXISTS = "ALREADY_EXISTS",
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INVALID = "INVALID",
+  NOT_FOUND = "NOT_FOUND",
+  REQUIRED = "REQUIRED",
+  UNIQUE = "UNIQUE",
+}
+
 export enum MenuErrorCode {
   CANNOT_ASSIGN_NODE = "CANNOT_ASSIGN_NODE",
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
@@ -1176,6 +1185,28 @@ export interface FulfillmentUpdateTrackingInput {
 export interface IntRangeInput {
   gte?: number | null;
   lte?: number | null;
+}
+
+export interface LocationAddressInput {
+  streetAddress1: string;
+  streetAddress2?: string | null;
+  city: string;
+  cityArea?: string | null;
+  postalCode?: string | null;
+  country: CountryCode;
+  countryArea?: string | null;
+  phone?: string | null;
+}
+
+export interface LocationCreateInput {
+  geography?: string | null;
+  product: string;
+  address: LocationAddressInput;
+}
+
+export interface LocationUpdateInput {
+  geography?: string | null;
+  address?: LocationAddressInput | null;
 }
 
 export interface MenuCreateInput {
