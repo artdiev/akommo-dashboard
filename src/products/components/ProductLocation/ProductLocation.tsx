@@ -92,19 +92,21 @@ const ProductLocation: React.FC<ProductLocationProps> = ({
           id: "productLocationHeader"
         })}
         toolbar={
-          <Button color="primary" variant="text" onClick={handleAction}>
-            {location ? (
-              <FormattedMessage
-                defaultMessage="Edit product location"
-                description="button"
-              />
-            ) : (
-              <FormattedMessage
-                defaultMessage="Create a product location"
-                description="button"
-              />
-            )}
-          </Button>
+          loading ? null : (
+            <Button color="primary" variant="text" onClick={handleAction}>
+              {location ? (
+                <FormattedMessage
+                  defaultMessage="Edit product location"
+                  description="button"
+                />
+              ) : (
+                <FormattedMessage
+                  defaultMessage="Create a product location"
+                  description="button"
+                />
+              )}
+            </Button>
+          )
         }
       />
       <CardContent>{cardContent}</CardContent>

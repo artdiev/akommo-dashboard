@@ -28,11 +28,18 @@ export interface LocationDetails_location_address {
   streetAddress2: string;
 }
 
+export interface LocationDetails_location_product {
+  __typename: "Product";
+  id: string;
+  name: string;
+}
+
 export interface LocationDetails_location {
   __typename: "Location";
   id: string;
   geography: any;
   address: LocationDetails_location_address;
+  product: LocationDetails_location_product;
 }
 
 export interface LocationDetails {

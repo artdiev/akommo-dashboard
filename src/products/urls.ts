@@ -8,6 +8,7 @@ import {
   FiltersAsDictWithMultipleValues,
   FiltersWithMultipleValues,
   Pagination,
+  SingleAction,
   Sort,
   TabActionDialog
 } from "../types";
@@ -101,7 +102,9 @@ export const productVariantAddUrl = (productId: string): string =>
 
 export const productLocationPath = (productId: string, locationId: string) =>
   urlJoin(productSection, productId, "location", locationId);
-export type productLocationUrlQueryParams = Dialog<"remove">;
+export type productLocationUrlDialog = "delete";
+export type productLocationUrlQueryParams = Dialog<productLocationUrlDialog> &
+  SingleAction;
 export const productLocationUrl = (
   productId: string,
   locationId: string,

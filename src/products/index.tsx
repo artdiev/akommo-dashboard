@@ -15,6 +15,7 @@ import {
   ProductListUrlQueryParams,
   ProductListUrlSortField,
   productLocationPath,
+  productLocationUrlQueryParams,
   productPath,
   ProductUrlQueryParams,
   productVariantAddPath,
@@ -25,7 +26,7 @@ import {
 import ProductCreate from "./views/ProductCreate";
 import ProductImageComponent from "./views/ProductImage";
 import ProductListComponent from "./views/ProductList";
-import ProductLocationUpdate from "./views/ProductLocationUpdate/ProductLocationUpdate";
+import ProductLocationComponent from "./views/ProductLocation";
 import ProductUpdateComponent from "./views/ProductUpdate";
 import ProductVariantComponent from "./views/ProductVariant";
 import ProductVariantCreateComponent from "./views/ProductVariantCreate";
@@ -105,12 +106,20 @@ const ProductVariantCreator: React.FC<RouteComponentProps<{
   <ProductVariantCreatorComponent id={decodeURIComponent(match.params.id)} />
 );
 
-const ProductLocation: React.FC<RouteComponentProps<any>> = ({ match }) => (
-  <ProductLocationUpdate
-    productId={decodeURIComponent(match.params.productId)}
-    locationId={decodeURIComponent(match.params.locationId)}
-  />
-);
+const ProductLocation: React.FC<RouteComponentProps<any>> = ({
+  location,
+  match
+}) => {
+  const qs = parseQs(location.search.substr(1));
+  const params: productLocationUrlQueryParams = qs;
+  return (
+    <ProductLocationComponent
+      productId={decodeURIComponent(match.params.productId)}
+      locationId={decodeURIComponent(match.params.locationId)}
+      params={params}
+    />
+  );
+};
 
 const Component = () => {
   const intl = useIntl();

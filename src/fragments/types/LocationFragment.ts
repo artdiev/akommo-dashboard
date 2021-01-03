@@ -28,9 +28,16 @@ export interface LocationFragment_address {
   streetAddress2: string;
 }
 
+export interface LocationFragment_product {
+  __typename: "Product";
+  id: string;
+  name: string;
+}
+
 export interface LocationFragment {
   __typename: "Location";
   id: string;
   geography: any;
   address: LocationFragment_address;
+  product: LocationFragment_product;
 }

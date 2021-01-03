@@ -30,7 +30,8 @@ const environmentPlugin = new webpack.EnvironmentPlugin({
   MANUAL_URL: "",
   DOCS_URL: "",
   BLOG_URL: "",
-  STOREFRONT_URL: ""
+  STOREFRONT_URL: "",
+  MapboxAccessToken: ""
 });
 
 const dashboardBuildPath = "build/dashboard/";

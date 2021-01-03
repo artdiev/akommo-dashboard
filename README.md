@@ -67,6 +67,9 @@ Environment variables available for configuration:
 - `API_URI` (required) - URI of a running instance of Saleor GraphQL API.
   If you are running Saleor locally with the default settings, set `API_URI` to: `http://localhost:8000/graphql/`.
 
+- `MapboxAccessToken` - Required for loading the mapbox map for previewing locations.
+  If you don't provided it the app will not load the map.
+
 - `APP_MOUNT_URI` - URI at which the Dashboard app will be mounted.
   E.g. if you set `APP_MOUNT_URI` to `/dashboard/`, your app will be mounted at `http://localhost:9000/dashboard/`.
 

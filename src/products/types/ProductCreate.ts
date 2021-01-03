@@ -233,11 +233,18 @@ export interface ProductCreate_productCreate_product_location_address {
   streetAddress2: string;
 }
 
+export interface ProductCreate_productCreate_product_location_product {
+  __typename: "Product";
+  id: string;
+  name: string;
+}
+
 export interface ProductCreate_productCreate_product_location {
   __typename: "Location";
   id: string;
   geography: any;
   address: ProductCreate_productCreate_product_location_address;
+  product: ProductCreate_productCreate_product_location_product;
 }
 
 export interface ProductCreate_productCreate_product {

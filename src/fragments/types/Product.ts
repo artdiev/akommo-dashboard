@@ -226,11 +226,18 @@ export interface Product_location_address {
   streetAddress2: string;
 }
 
+export interface Product_location_product {
+  __typename: "Product";
+  id: string;
+  name: string;
+}
+
 export interface Product_location {
   __typename: "Location";
   id: string;
   geography: any;
   address: Product_location_address;
+  product: Product_location_product;
 }
 
 export interface Product {

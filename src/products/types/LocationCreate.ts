@@ -36,11 +36,18 @@ export interface LocationCreate_locationCreate_location_address {
   streetAddress2: string;
 }
 
+export interface LocationCreate_locationCreate_location_product {
+  __typename: "Product";
+  id: string;
+  name: string;
+}
+
 export interface LocationCreate_locationCreate_location {
   __typename: "Location";
   id: string;
   geography: any;
   address: LocationCreate_locationCreate_location_address;
+  product: LocationCreate_locationCreate_location_product;
 }
 
 export interface LocationCreate_locationCreate {

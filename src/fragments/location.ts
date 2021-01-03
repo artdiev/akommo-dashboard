@@ -10,5 +10,9 @@ export const fragmentLocation = gql`
     address {
       ...AddressFragment
     }
+    product {
+      id
+      name
+    }
   }
 `;

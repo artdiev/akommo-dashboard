@@ -232,11 +232,18 @@ export interface ProductImageUpdate_productImageUpdate_product_location_address 
   streetAddress2: string;
 }
 
+export interface ProductImageUpdate_productImageUpdate_product_location_product {
+  __typename: "Product";
+  id: string;
+  name: string;
+}
+
 export interface ProductImageUpdate_productImageUpdate_product_location {
   __typename: "Location";
   id: string;
   geography: any;
   address: ProductImageUpdate_productImageUpdate_product_location_address;
+  product: ProductImageUpdate_productImageUpdate_product_location_product;
 }
 
 export interface ProductImageUpdate_productImageUpdate_product {

@@ -232,11 +232,18 @@ export interface ProductVariantSetDefault_productVariantSetDefault_product_locat
   streetAddress2: string;
 }
 
+export interface ProductVariantSetDefault_productVariantSetDefault_product_location_product {
+  __typename: "Product";
+  id: string;
+  name: string;
+}
+
 export interface ProductVariantSetDefault_productVariantSetDefault_product_location {
   __typename: "Location";
   id: string;
   geography: any;
   address: ProductVariantSetDefault_productVariantSetDefault_product_location_address;
+  product: ProductVariantSetDefault_productVariantSetDefault_product_location_product;
 }
 
 export interface ProductVariantSetDefault_productVariantSetDefault_product {
