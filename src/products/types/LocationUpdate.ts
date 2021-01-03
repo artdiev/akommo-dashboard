@@ -5,27 +5,27 @@
 import { LocationUpdateInput, LocationErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: locationUpdate
+// GraphQL mutation operation: LocationUpdate
 // ====================================================
 
-export interface locationUpdate_locationUpdate_locationErrors {
+export interface LocationUpdate_locationUpdate_locationErrors {
   __typename: "LocationError";
   code: LocationErrorCode;
   field: string | null;
 }
 
-export interface locationUpdate_locationUpdate_location_address_country {
+export interface LocationUpdate_locationUpdate_location_address_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface locationUpdate_locationUpdate_location_address {
+export interface LocationUpdate_locationUpdate_location_address {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: locationUpdate_locationUpdate_location_address_country;
+  country: LocationUpdate_locationUpdate_location_address_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -36,24 +36,24 @@ export interface locationUpdate_locationUpdate_location_address {
   streetAddress2: string;
 }
 
-export interface locationUpdate_locationUpdate_location {
+export interface LocationUpdate_locationUpdate_location {
   __typename: "Location";
   id: string;
   geography: any;
-  address: locationUpdate_locationUpdate_location_address;
+  address: LocationUpdate_locationUpdate_location_address;
 }
 
-export interface locationUpdate_locationUpdate {
+export interface LocationUpdate_locationUpdate {
   __typename: "LocationUpdate";
-  locationErrors: locationUpdate_locationUpdate_locationErrors[];
-  location: locationUpdate_locationUpdate_location | null;
+  locationErrors: LocationUpdate_locationUpdate_locationErrors[];
+  location: LocationUpdate_locationUpdate_location | null;
 }
 
-export interface locationUpdate {
-  locationUpdate: locationUpdate_locationUpdate | null;
+export interface LocationUpdate {
+  locationUpdate: LocationUpdate_locationUpdate | null;
 }
 
-export interface locationUpdateVariables {
+export interface LocationUpdateVariables {
   id: string;
   input: LocationUpdateInput;
 }

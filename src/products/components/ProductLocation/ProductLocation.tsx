@@ -8,7 +8,7 @@ import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragme
 import useNavigator from "@saleor/hooks/useNavigator";
 import { ProductDetails_product_location } from "@saleor/products/types/ProductDetails";
 import { productLocationUrl } from "@saleor/products/urls";
-import React, { ReactNode, useMemo } from "react";
+import React, { useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 export interface ProductLocationProps {
@@ -58,7 +58,18 @@ const ProductLocation: React.FC<ProductLocationProps> = ({
     return res;
   }, [location]);
 
-  let cardContent: ReactNode;
+  let cardContent = (
+    <Typography>
+      <div>
+        <span>
+          <FormattedMessage
+            defaultMessage="There is no location created for this element"
+            description="header"
+          />
+        </span>
+      </div>
+    </Typography>
+  );
 
   if (loading) {
     cardContent = (
@@ -70,19 +81,6 @@ const ProductLocation: React.FC<ProductLocationProps> = ({
     );
   } else if (location) {
     cardContent = <Grid container>{addressText}</Grid>;
-  } else {
-    cardContent = (
-      <Typography>
-        <div>
-          <span>
-            <FormattedMessage
-              defaultMessage="There is no location created for this element"
-              description="header"
-            />
-          </span>
-        </div>
-      </Typography>
-    );
   }
 
   return (

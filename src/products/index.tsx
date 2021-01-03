@@ -105,9 +105,12 @@ const ProductVariantCreator: React.FC<RouteComponentProps<{
   <ProductVariantCreatorComponent id={decodeURIComponent(match.params.id)} />
 );
 
-const ProductLocation: React.FC<RouteComponentProps<{ id: string }>> = ({
-  match
-}) => <ProductLocationUpdate id={decodeURIComponent(match.params.id)} />;
+const ProductLocation: React.FC<RouteComponentProps<any>> = ({ match }) => (
+  <ProductLocationUpdate
+    productId={decodeURIComponent(match.params.productId)}
+    locationId={decodeURIComponent(match.params.locationId)}
+  />
+);
 
 const Component = () => {
   const intl = useIntl();

@@ -1,35 +1,26 @@
 import NotFoundPage from "@saleor/components/NotFoundPage";
 import { WindowTitle } from "@saleor/components/WindowTitle";
 import useNavigator from "@saleor/hooks/useNavigator";
-// import useNotifier from "@saleor/hooks/useNotifier";
-// import useShop from "@saleor/hooks/useShop";
-// import { commonMessages } from "@saleor/intl";
-// import { findValueInEnum, getMutationStatus } from "@saleor/misc";
-// import { CountryCode } from "@saleor/types/globalTypes";
-// // import { WarehouseDetailsPageFormData } from "@saleor/warehouses/components/WarehouseDetailsPage";
-// import {
-// useWarehouseDelete,
-// useWarehouseUpdate
-// } from "@saleor/warehouses/mutations";
-import { useWarehouseDetails } from "@saleor/warehouses/queries";
+import { useLocationDetails } from "@saleor/products/queries";
 import { warehouseListUrl } from "@saleor/warehouses/urls";
 import React from "react";
 // import { useIntl } from "react-intl";
 
 export interface ProductLocationUpdateProps {
-  id: string;
+  productId: string;
+  locationId: string;
 }
 
 const ProductLocationUpdate: React.FC<ProductLocationUpdateProps> = ({
-  id
+  locationId
 }) => {
   // const intl = useIntl();
   const navigate = useNavigator();
   // const notify = useNotifier();
   // const shop = useShop();
-  const { data } = useWarehouseDetails({
+  const { data } = useLocationDetails({
     displayLoader: true,
-    variables: { id }
+    variables: { id: locationId }
   });
   // const [updateWarehouse, updateWarehouseOpts] = useWarehouseUpdate({
   //   onCompleted: data => {
@@ -62,7 +53,7 @@ const ProductLocationUpdate: React.FC<ProductLocationUpdateProps> = ({
   //   params
   // );
 
-  if (data?.warehouse === null) {
+  if (data?.location === null) {
     return <NotFoundPage onBack={() => navigate(warehouseListUrl())} />;
   }
 
@@ -89,7 +80,7 @@ const ProductLocationUpdate: React.FC<ProductLocationUpdateProps> = ({
   // };
   return (
     <>
-      <WindowTitle title={data?.warehouse?.name} />
+      <WindowTitle title={data?.location?.id} />
       <div>text</div>
       {/* <WarehouseDetailsPage
         countries={shop?.countries || []}

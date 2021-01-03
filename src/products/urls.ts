@@ -101,7 +101,18 @@ export const productVariantAddUrl = (productId: string): string =>
 
 export const productLocationPath = (productId: string, locationId: string) =>
   urlJoin(productSection, productId, "location", locationId);
-export const productLocationUrl = productLocationPath;
+export type productLocationUrlQueryParams = Dialog<"remove">;
+export const productLocationUrl = (
+  productId: string,
+  locationId: string,
+  params?: productLocationUrlQueryParams
+) =>
+  productLocationPath(
+    encodeURIComponent(productId),
+    encodeURIComponent(locationId)
+  ) +
+  "?" +
+  stringifyQs(params);
 
 export const productImagePath = (productId: string, imageId: string) =>
   urlJoin(productSection, productId, "image", imageId);

@@ -5,27 +5,27 @@
 import { LocationCreateInput, LocationErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: locationCreate
+// GraphQL mutation operation: LocationCreate
 // ====================================================
 
-export interface locationCreate_locationCreate_locationErrors {
+export interface LocationCreate_locationCreate_locationErrors {
   __typename: "LocationError";
   code: LocationErrorCode;
   field: string | null;
 }
 
-export interface locationCreate_locationCreate_location_address_country {
+export interface LocationCreate_locationCreate_location_address_country {
   __typename: "CountryDisplay";
   code: string;
   country: string;
 }
 
-export interface locationCreate_locationCreate_location_address {
+export interface LocationCreate_locationCreate_location_address {
   __typename: "Address";
   city: string;
   cityArea: string;
   companyName: string;
-  country: locationCreate_locationCreate_location_address_country;
+  country: LocationCreate_locationCreate_location_address_country;
   countryArea: string;
   firstName: string;
   id: string;
@@ -36,23 +36,23 @@ export interface locationCreate_locationCreate_location_address {
   streetAddress2: string;
 }
 
-export interface locationCreate_locationCreate_location {
+export interface LocationCreate_locationCreate_location {
   __typename: "Location";
   id: string;
   geography: any;
-  address: locationCreate_locationCreate_location_address;
+  address: LocationCreate_locationCreate_location_address;
 }
 
-export interface locationCreate_locationCreate {
+export interface LocationCreate_locationCreate {
   __typename: "LocationCreate";
-  locationErrors: locationCreate_locationCreate_locationErrors[];
-  location: locationCreate_locationCreate_location | null;
+  locationErrors: LocationCreate_locationCreate_locationErrors[];
+  location: LocationCreate_locationCreate_location | null;
 }
 
-export interface locationCreate {
-  locationCreate: locationCreate_locationCreate | null;
+export interface LocationCreate {
+  locationCreate: LocationCreate_locationCreate | null;
 }
 
-export interface locationCreateVariables {
+export interface LocationCreateVariables {
   input: LocationCreateInput;
 }

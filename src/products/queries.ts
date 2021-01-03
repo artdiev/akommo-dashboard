@@ -1,3 +1,4 @@
+import { fragmentLocation } from "@saleor/fragments/location";
 import { pageInfoFragment } from "@saleor/fragments/pageInfo";
 import {
   fragmentMoney,
@@ -24,6 +25,10 @@ import {
   InitialProductFilterData,
   InitialProductFilterDataVariables
 } from "./types/InitialProductFilterData";
+import {
+  LocationDetails,
+  LocationDetailsVariables
+} from "./types/LocationDetails";
 import {
   ProductDetails,
   ProductDetailsVariables
@@ -181,6 +186,19 @@ export const useProductDetails = makeQuery<
   ProductDetails,
   ProductDetailsVariables
 >(productDetailsQuery);
+
+export const locationDetails = gql`
+  ${fragmentLocation}
+  query LocationDetails($id: ID!) {
+    location(id: $id) {
+      ...LocationFragment
+    }
+  }
+`;
+export const useLocationDetails = makeQuery<
+  LocationDetails,
+  LocationDetailsVariables
+>(locationDetails);
 
 const productVariantQuery = gql`
   ${fragmentVariant}

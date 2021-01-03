@@ -5,24 +5,24 @@
 import { LocationErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: locationDelete
+// GraphQL mutation operation: LocationDelete
 // ====================================================
 
-export interface locationDelete_locationDelete_locationErrors {
+export interface LocationDelete_locationDelete_locationErrors {
   __typename: "LocationError";
   code: LocationErrorCode;
   field: string | null;
 }
 
-export interface locationDelete_locationDelete {
+export interface LocationDelete_locationDelete {
   __typename: "LocationDelete";
-  locationErrors: locationDelete_locationDelete_locationErrors[];
+  locationErrors: LocationDelete_locationDelete_locationErrors[];
 }
 
-export interface locationDelete {
-  locationDelete: locationDelete_locationDelete | null;
+export interface LocationDelete {
+  locationDelete: LocationDelete_locationDelete | null;
 }
 
-export interface locationDeleteVariables {
+export interface LocationDeleteVariables {
   id: string;
 }
