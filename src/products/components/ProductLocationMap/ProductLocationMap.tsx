@@ -27,8 +27,8 @@ const ProductLocationMap: React.FC<ProductLocationMapProps> = ({
 }) => {
   const intl = useIntl();
   const [viewport, setViewport] = React.useState({
-    latitude: parseInt(data.latitude),
-    longitude: parseInt(data.longitude),
+    latitude: parseInt(data.latitude, 10),
+    longitude: parseInt(data.longitude, 10),
     zoom: 12
   });
 

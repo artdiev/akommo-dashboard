@@ -87,7 +87,6 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
       variables: {
         id: locationId,
         input: {
-          geography: `POINT(${data.latitude} ${data.longitude})`,
           address: {
             city: data.city,
             cityArea: data.cityArea,
@@ -97,7 +96,8 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
             postalCode: data.postalCode,
             streetAddress1: data.streetAddress1,
             streetAddress2: data.streetAddress2
-          }
+          },
+          geography: `POINT(${data.latitude} ${data.longitude})`
         }
       }
     });
