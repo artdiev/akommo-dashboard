@@ -13,20 +13,19 @@ import { LocationErrorFragment } from "@saleor/fragments/types/LocationErrorFrag
 import useAddressValidation from "@saleor/hooks/useAddressValidation";
 import { SubmitPromise } from "@saleor/hooks/useForm";
 import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { sectionNames } from "@saleor/intl";
 import { findValueInEnum, maybe } from "@saleor/misc";
 import { ProductDetails_product_location } from "@saleor/products/types/ProductDetails";
 import { CountryCode } from "@saleor/types/globalTypes";
 import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
 import { mapCountriesToChoices } from "@saleor/utils/maps";
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 import ProductLocationMap from "../ProductLocationMap";
 
 export interface ProductLocationPageFormData extends AddressTypeInput {
-  longitude: string;
-  latitude: string;
+  longitude: number;
+  latitude: number;
 }
 export interface ProductLocationPageProps {
   countries: ShopInfo_shop_countries[];
@@ -34,6 +33,7 @@ export interface ProductLocationPageProps {
   errors: LocationErrorFragment[];
   saveButtonBarState: ConfirmButtonTransitionState;
   location: ProductDetails_product_location;
+  product: string;
   onBack: () => void;
   onDelete: () => void;
   onSubmit: (data: ProductLocationPageFormData) => SubmitPromise;
@@ -43,6 +43,7 @@ const ProductLocationPage: React.FC<ProductLocationPageProps> = ({
   countries,
   disabled,
   errors,
+  product,
   saveButtonBarState,
   location,
   onBack,
@@ -66,8 +67,8 @@ const ProductLocationPage: React.FC<ProductLocationPageProps> = ({
       findValueInEnum(location.address.country.code, CountryCode)
     ),
     countryArea: maybe(() => location.address.countryArea, ""),
-    latitude: maybe(() => location.geography.coordinates[0], ""),
-    longitude: maybe(() => location.geography.coordinates[1], ""),
+    latitude: maybe(() => location.geography.coordinates[0], 43.55),
+    longitude: maybe(() => location.geography.coordinates[1], 7),
     phone: maybe(() => location.address.phone, ""),
     postalCode: maybe(() => location.address.postalCode, ""),
     streetAddress1: maybe(() => location.address.streetAddress1, ""),
@@ -86,10 +87,8 @@ const ProductLocationPage: React.FC<ProductLocationPageProps> = ({
 
         return (
           <Container>
-            <AppHeader onBack={onBack}>
-              <FormattedMessage {...sectionNames.products} />
-            </AppHeader>
-            <PageHeader title={location?.address?.companyName} />
+            <AppHeader onBack={onBack}>{product}</AppHeader>
+            <PageHeader title="Edit Location" />
             <Grid>
               <div>
                 <CompanyAddressInput

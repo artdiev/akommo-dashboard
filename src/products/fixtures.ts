@@ -226,6 +226,11 @@ export const product: (
       postalCode: "08005",
       streetAddress1: "Line2",
       streetAddress2: "Ramon Turro 100"
+    },
+    product: {
+      __typename: "Product",
+      id: "123as321q3",
+      name: "1 Bedroom"
     }
   },
   privateMetadata: [],

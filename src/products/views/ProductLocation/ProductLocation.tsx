@@ -111,6 +111,7 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
         countries={shop?.countries || []}
         disabled={loading || updateLocationOpts.loading}
         errors={updateLocationOpts.data?.locationUpdate.locationErrors || []}
+        product={data?.location?.product?.name}
         saveButtonBarState={updateLocationTransitionState}
         location={data?.location}
         onBack={() => navigate(productUrl(productId))}
