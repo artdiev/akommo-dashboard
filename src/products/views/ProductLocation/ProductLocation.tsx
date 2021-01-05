@@ -55,6 +55,7 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
           status: "success",
           text: intl.formatMessage(commonMessages.savedChanges)
         });
+        navigate(productUrl(productId));
       }
     }
   });
@@ -67,6 +68,7 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
           status: "success",
           text: intl.formatMessage(commonMessages.savedChanges)
         });
+        navigate(productUrl(productId));
       }
     }
   });
@@ -111,6 +113,7 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
       },
       geography: `POINT(${data.latitude} ${data.longitude})`
     };
+    let errs;
     if (isNewLocation) {
       const res = await createLocation({
         variables: {
@@ -120,18 +123,20 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
           }
         }
       });
-      return res.data.locationCreate.locationErrors;
+      errs = res.data.locationCreate.locationErrors;
+    } else {
+      const res = await updateLocation({
+        variables: {
+          id: locationId,
+          input: {
+            ...variables
+          }
+        }
+      });
+      errs = res.data.locationUpdate.locationErrors;
     }
 
-    const result = await updateLocation({
-      variables: {
-        id: locationId,
-        input: {
-          ...variables
-        }
-      }
-    });
-    return result.data.locationUpdate.locationErrors;
+    return errs;
   };
 
   return (

@@ -38,7 +38,7 @@ const ProductLocationDeleteDialog: React.FC<ProductLocationDeleteDialogProps> = 
           defaultMessage="Are you sure you want to delete {productLocationName}?"
           description="dialog content"
           values={{
-            productLocationName: <strong>location for product ${name}</strong>
+            productLocationName: <strong>location for product {name}</strong>
           }}
         />
       </DialogContentText>

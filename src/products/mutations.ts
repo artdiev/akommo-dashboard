@@ -509,7 +509,6 @@ export const useLocationUpdateMutation = makeMutation<
 
 export const locationDeleteMutation = gql`
   ${locationErrorFragment}
-  ${fragmentLocation}
   mutation LocationDelete($id: ID!) {
     locationDelete(id: $id) {
       locationErrors {
