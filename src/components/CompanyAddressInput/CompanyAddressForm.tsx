@@ -7,11 +7,13 @@ import SingleAutocompleteSelectField, {
 } from "@saleor/components/SingleAutocompleteSelectField";
 import { AddressTypeInput } from "@saleor/customers/types";
 import { AccountErrorFragment } from "@saleor/fragments/types/AccountErrorFragment";
+import { LocationErrorFragment } from "@saleor/fragments/types/LocationErrorFragment";
 import { ShopErrorFragment } from "@saleor/fragments/types/ShopErrorFragment";
 import { WarehouseErrorFragment } from "@saleor/fragments/types/WarehouseErrorFragment";
 import { ChangeEvent } from "@saleor/hooks/useForm";
 import { getFormErrors } from "@saleor/utils/errors";
 import getAccountErrorMessage from "@saleor/utils/errors/account";
+import getLocationErrorMessage from "@saleor/utils/errors/location";
 import getShopErrorMessage from "@saleor/utils/errors/shop";
 import getWarehouseErrorMessage from "@saleor/utils/errors/warehouse";
 import React from "react";
@@ -22,7 +24,7 @@ export interface CompanyAddressFormProps {
   data: AddressTypeInput;
   displayCountry: string;
   errors: Array<
-    AccountErrorFragment | ShopErrorFragment | WarehouseErrorFragment
+    AccountErrorFragment | ShopErrorFragment | WarehouseErrorFragment | LocationErrorFragment
   >;
   disabled: boolean;
   onChange: (event: ChangeEvent) => void;
@@ -37,7 +39,7 @@ const useStyles = makeStyles(
 );
 
 function getErrorMessage(
-  err: AccountErrorFragment | ShopErrorFragment | WarehouseErrorFragment,
+  err: AccountErrorFragment | ShopErrorFragment | WarehouseErrorFragment | LocationErrorFragment,
   intl: IntlShape
 ): string {
   switch (err?.__typename) {
@@ -45,6 +47,8 @@ function getErrorMessage(
       return getAccountErrorMessage(err, intl);
     case "WarehouseError":
       return getWarehouseErrorMessage(err, intl);
+    case "LocationError":
+      return getLocationErrorMessage(err, intl);
     default:
       return getShopErrorMessage(err, intl);
   }

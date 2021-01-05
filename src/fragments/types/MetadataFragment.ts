@@ -19,7 +19,7 @@ export interface MetadataFragment_privateMetadata {
 }
 
 export interface MetadataFragment {
-  __typename: "ServiceAccount" | "App" | "Product" | "ProductType" | "Attribute" | "Category" | "ProductVariant" | "DigitalContent" | "Collection" | "Page" | "User" | "Checkout" | "Order" | "Fulfillment" | "Invoice";
+  __typename: "Product" | "ProductType" | "Attribute" | "Category" | "ProductVariant" | "DigitalContent" | "Collection" | "ServiceAccount" | "App" | "Page" | "User" | "Checkout" | "Order" | "Fulfillment" | "Invoice";
   metadata: (MetadataFragment_metadata | null)[];
   privateMetadata: (MetadataFragment_privateMetadata | null)[];
 }

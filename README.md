@@ -1,8 +1,9 @@
 # Saleor Dashboard
 
-![Saleor Dashboard](https://user-images.githubusercontent.com/249912/82305745-5c52fd00-99be-11ea-9ac6-cc04a6f28c91.png)
-
 A GraphQL-powered, single-page dashboard application for [Saleor](https://github.com/mirumee/saleor/).
+This is a fork of the original Mirumee dashboard with customized logos, style and added views for our custom saleor API.
+
+Please note that logos included in this fork are the property of their respective owners.
 
 ## Demo
 
@@ -61,16 +62,31 @@ $ npm i
 
 ### Configuration
 
-There are two environment variables available for configuration:
+Environment variables available for configuration:
 
 - `API_URI` (required) - URI of a running instance of Saleor GraphQL API.
   If you are running Saleor locally with the default settings, set `API_URI` to: `http://localhost:8000/graphql/`.
+
+- `MapboxAccessToken` - Required for loading the mapbox map for previewing locations.
+  If you don't provided it the app will not load the map.
 
 - `APP_MOUNT_URI` - URI at which the Dashboard app will be mounted.
   E.g. if you set `APP_MOUNT_URI` to `/dashboard/`, your app will be mounted at `http://localhost:9000/dashboard/`.
 
 - `STATIC_URL` - URL where the static files are located.
   E.g. if you use S3 bucket, you should set it to the bucket's URL. By default Saleor assumes you serve static files from the root of your site at `http://localhost:9000/`.
+
+#### Quick Links environment variables:
+
+- `MANUAL_URL` - URL to user documentation for the dashboard, eg: https://docs.saleor.io/docs/dashboard/index/
+
+- `DOCS_URL` - URL to other (technical) documentation.
+
+- `BLOG_URL` - URL to the blog CMS admin panel.
+
+- `STOREFRONT_URL` - URL to the main (gatsby) storefront.
+
+
 
 ### Development
 

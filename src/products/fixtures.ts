@@ -200,6 +200,39 @@ export const product: (
       }
     }
   },
+  location: {
+    __typename: "Location",
+    id: "pad123123",
+    geography: {
+      __typename: "PointScalar",
+      type: "POINT",
+      coordinates: ["42", "15"]
+    },
+    address: {
+      __typename: "Address",
+      id: "sadBee",
+      city: "Barcelona",
+      cityArea: "Barcelona",
+      companyName: "Akommo",
+      country: {
+        __typename: "CountryDisplay",
+        code: "ES",
+        country: "Spain"
+      },
+      countryArea: "test",
+      firstName: "John",
+      lastName: "Green",
+      phone: "+34111111111",
+      postalCode: "08005",
+      streetAddress1: "Line2",
+      streetAddress2: "Ramon Turro 100"
+    },
+    product: {
+      __typename: "Product",
+      id: "123as321q3",
+      name: "1 Bedroom"
+    }
+  },
   privateMetadata: [],
   productType: {
     __typename: "ProductType",

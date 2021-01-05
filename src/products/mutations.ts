@@ -2,10 +2,12 @@ import {
   bulkProductErrorFragment,
   bulkStockErrorFragment,
   exportErrorFragment,
+  locationErrorFragment,
   productErrorFragment,
   productErrorWithAttributesFragment,
   stockErrorFragment
 } from "@saleor/fragments/errors";
+import { fragmentLocation } from "@saleor/fragments/location";
 import {
   exportFileFragment,
   fragmentVariant,
@@ -14,6 +16,18 @@ import {
 import makeMutation from "@saleor/hooks/makeMutation";
 import gql from "graphql-tag";
 
+import {
+  LocationCreate,
+  LocationCreateVariables
+} from "./types/LocationCreate";
+import {
+  LocationDelete,
+  LocationDeleteVariables
+} from "./types/LocationDelete";
+import {
+  LocationUpdate,
+  LocationUpdateVariables
+} from "./types/LocationUpdate";
 import {
   productBulkDelete,
   productBulkDeleteVariables
@@ -454,6 +468,59 @@ export const useVariantImageUnassignMutation = makeMutation<
   VariantImageUnassign,
   VariantImageUnassignVariables
 >(variantImageUnassignMutation);
+
+export const locationCreateMutation = gql`
+  ${locationErrorFragment}
+  ${fragmentLocation}
+  mutation LocationCreate($input: LocationCreateInput!) {
+    locationCreate(input: $input) {
+      locationErrors {
+        ...LocationErrorFragment
+      }
+      location {
+        ...LocationFragment
+      }
+    }
+  }
+`;
+export const useLocationCreateMutation = makeMutation<
+  LocationCreate,
+  LocationCreateVariables
+>(locationCreateMutation);
+
+export const locationUpdateMutation = gql`
+  ${locationErrorFragment}
+  ${fragmentLocation}
+  mutation LocationUpdate($id: ID!, $input: LocationUpdateInput!) {
+    locationUpdate(id: $id, input: $input) {
+      locationErrors {
+        ...LocationErrorFragment
+      }
+      location {
+        ...LocationFragment
+      }
+    }
+  }
+`;
+export const useLocationUpdateMutation = makeMutation<
+  LocationUpdate,
+  LocationUpdateVariables
+>(locationUpdateMutation);
+
+export const locationDeleteMutation = gql`
+  ${locationErrorFragment}
+  mutation LocationDelete($id: ID!) {
+    locationDelete(id: $id) {
+      locationErrors {
+        ...LocationErrorFragment
+      }
+    }
+  }
+`;
+export const useLocationDeleteMutation = makeMutation<
+  LocationDelete,
+  LocationDeleteVariables
+>(locationDeleteMutation);
 
 export const productBulkDeleteMutation = gql`
   ${productErrorFragment}

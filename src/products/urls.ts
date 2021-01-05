@@ -8,6 +8,7 @@ import {
   FiltersAsDictWithMultipleValues,
   FiltersWithMultipleValues,
   Pagination,
+  SingleAction,
   Sort,
   TabActionDialog
 } from "../types";
@@ -98,6 +99,23 @@ export const productVariantAddPath = (productId: string) =>
   urlJoin(productSection, productId, "variant/add");
 export const productVariantAddUrl = (productId: string): string =>
   productVariantAddPath(encodeURIComponent(productId));
+
+export const productLocationPath = (productId: string, locationId: string) =>
+  urlJoin(productSection, productId, "location", locationId);
+export type productLocationUrlDialog = "delete";
+export type productLocationUrlQueryParams = Dialog<productLocationUrlDialog> &
+  SingleAction;
+export const productLocationUrl = (
+  productId: string,
+  locationId: string,
+  params?: productLocationUrlQueryParams
+) =>
+  productLocationPath(
+    encodeURIComponent(productId),
+    encodeURIComponent(locationId)
+  ) +
+  "?" +
+  stringifyQs(params);
 
 export const productImagePath = (productId: string, imageId: string) =>
   urlJoin(productSection, productId, "image", imageId);

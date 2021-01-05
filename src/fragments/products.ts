@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 
+import { fragmentLocation } from "./location";
 import { metadataFragment } from "./metadata";
 import { taxTypeFragment } from "./taxes";
 import { weightFragment } from "./weight";
@@ -109,6 +110,7 @@ export const productFragmentDetails = gql`
   ${weightFragment}
   ${metadataFragment}
   ${taxTypeFragment}
+  ${fragmentLocation}
   fragment Product on Product {
     ...ProductVariantAttributesFragment
     ...MetadataFragment
@@ -191,6 +193,9 @@ export const productFragmentDetails = gql`
     }
     availableForPurchase
     visibleInListings
+    location {
+      ...LocationFragment
+    }
   }
 `;
 

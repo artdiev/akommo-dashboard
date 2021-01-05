@@ -32,6 +32,7 @@ import { getChoices, ProductUpdatePageFormData } from "../../utils/data";
 import ProductAttributes, { ProductAttributeInput } from "../ProductAttributes";
 import ProductDetailsForm from "../ProductDetailsForm";
 import ProductImages from "../ProductImages";
+import ProductLocation from "../ProductLocation";
 import ProductOrganization from "../ProductOrganization";
 import ProductPricing from "../ProductPricing";
 import ProductShipping from "../ProductShipping/ProductShipping";
@@ -279,6 +280,13 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                 />
                 <CardSpacer />
                 <Metadata data={data} onChange={handlers.changeMetadata} />
+                <CardSpacer />
+                <ProductLocation
+                  errors={errors}
+                  productId={product?.id}
+                  location={product?.location}
+                  loading={disabled}
+                />
               </div>
               <div>
                 <ProductOrganization
