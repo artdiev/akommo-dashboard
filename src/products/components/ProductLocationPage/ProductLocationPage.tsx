@@ -84,7 +84,6 @@ const ProductLocationPage: React.FC<ProductLocationPageProps> = ({
           setDisplayCountry,
           countryChoices
         );
-
         return (
           <Container>
             <AppHeader onBack={onBack}>{product}</AppHeader>
@@ -116,7 +115,7 @@ const ProductLocationPage: React.FC<ProductLocationPageProps> = ({
             <SaveButtonBar
               disabled={disabled || !hasChanged}
               onCancel={onBack}
-              onDelete={onDelete}
+              onDelete={location ? onDelete : null}
               onSave={submit}
               state={saveButtonBarState}
             />

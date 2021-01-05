@@ -13,6 +13,7 @@ import ProductLocationDeleteDialog from "@saleor/products/components/ProductLoca
 import ProductLocationPage from "@saleor/products/components/ProductLocationPage";
 import { ProductLocationPageFormData } from "@saleor/products/components/ProductLocationPage/ProductLocationPage";
 import {
+  useLocationCreateMutation,
   useLocationDeleteMutation,
   useLocationUpdateMutation
 } from "@saleor/products/mutations";
@@ -59,6 +60,18 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
   });
   const updateLocationTransitionState = getMutationStatus(updateLocationOpts);
 
+  const [createLocation, createLocationOpts] = useLocationCreateMutation({
+    onCompleted: data => {
+      if (data.locationCreate.locationErrors.length === 0) {
+        notify({
+          status: "success",
+          text: intl.formatMessage(commonMessages.savedChanges)
+        });
+      }
+    }
+  });
+  const createLocationTransitionState = getMutationStatus(createLocationOpts);
+
   const [deleteLocation, deleteLocationOpts] = useLocationDeleteMutation({
     onCompleted: data => {
       if (data.locationDelete.locationErrors.length === 0) {
@@ -78,26 +91,43 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
     params
   );
 
-  if (data?.location === null) {
+  const isNewLocation = locationId === "add";
+
+  if (data?.location === null && !isNewLocation) {
     return <NotFoundPage onBack={() => navigate(productUrl(productId))} />;
   }
 
   const handleSubmit = async (data: ProductLocationPageFormData) => {
+    const variables = {
+      address: {
+        city: data.city,
+        cityArea: data.cityArea,
+        country: findValueInEnum(data.country, CountryCode),
+        countryArea: data.countryArea,
+        phone: data.phone,
+        postalCode: data.postalCode,
+        streetAddress1: data.streetAddress1,
+        streetAddress2: data.streetAddress2
+      },
+      geography: `POINT(${data.latitude} ${data.longitude})`
+    };
+    if (isNewLocation) {
+      const res = await createLocation({
+        variables: {
+          input: {
+            product: productId,
+            ...variables
+          }
+        }
+      });
+      return res.data.locationCreate.locationErrors;
+    }
+
     const result = await updateLocation({
       variables: {
         id: locationId,
         input: {
-          address: {
-            city: data.city,
-            cityArea: data.cityArea,
-            country: findValueInEnum(data.country, CountryCode),
-            countryArea: data.countryArea,
-            phone: data.phone,
-            postalCode: data.postalCode,
-            streetAddress1: data.streetAddress1,
-            streetAddress2: data.streetAddress2
-          },
-          geography: `POINT(${data.latitude} ${data.longitude})`
+          ...variables
         }
       }
     });
@@ -109,10 +139,20 @@ const ProductLocation: React.FC<ProductLocationPageViewProps> = ({
       <WindowTitle title={data?.location?.id} />
       <ProductLocationPage
         countries={shop?.countries || []}
-        disabled={loading || updateLocationOpts.loading}
-        errors={updateLocationOpts.data?.locationUpdate.locationErrors || []}
+        disabled={
+          loading || updateLocationOpts.loading || createLocationOpts.loading
+        }
+        errors={
+          updateLocationOpts.data?.locationUpdate.locationErrors ||
+          createLocationOpts.data?.locationCreate.locationErrors ||
+          []
+        }
         product={data?.location?.product?.name}
-        saveButtonBarState={updateLocationTransitionState}
+        saveButtonBarState={
+          isNewLocation
+            ? createLocationTransitionState
+            : updateLocationTransitionState
+        }
         location={data?.location}
         onBack={() => navigate(productUrl(productId))}
         onDelete={() => openModal("delete")}
