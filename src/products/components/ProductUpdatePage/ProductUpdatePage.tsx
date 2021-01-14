@@ -1,6 +1,10 @@
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import AppHeader from "@saleor/components/AppHeader";
 import AvailabilityCard from "@saleor/components/AvailabilityCard";
 import CardSpacer from "@saleor/components/CardSpacer";
+import CardTitle from "@saleor/components/CardTitle";
 import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
 import Container from "@saleor/components/Container";
 import Grid from "@saleor/components/Grid";
@@ -341,6 +345,26 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                   onChange={change}
                   onTaxTypeChange={handlers.selectTaxRate}
                 />
+                <CardSpacer />
+                {process.env.STOREFRONT_URL && product?.id && (
+                  <Card>
+                    <CardTitle
+                      title={intl.formatMessage({
+                        defaultMessage: "Visibility",
+                        description: "section header"
+                      })}
+                    />
+                    <CardContent>
+                      <a
+                        href={`${process.env.STOREFRONT_URL}product/preview/${product?.id}`}
+                      >
+                        <Button color="primary" variant="contained">
+                          Preview in the storefront
+                        </Button>
+                      </a>
+                    </CardContent>
+                  </Card>
+                )}
               </div>
             </Grid>
             <SaveButtonBar
