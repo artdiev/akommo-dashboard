@@ -45,22 +45,15 @@ interface HomeQuickLinksCardProps {
 const HomeQuickLinksCard: React.FC<HomeQuickLinksCardProps> = props => {
   const { children, title } = props;
   const links = [
-    process.env.MANUAL_URL,
     process.env.DOCS_URL,
     process.env.BLOG_URL,
     process.env.STOREFRONT_URL
   ];
-  const linksDesc = [
-    "Dashboard Manual",
-    "Technical Docs",
-    "Blog CMS",
-    "Client website"
-  ];
+  const linksDesc = ["Documentation & Roadmap", "Blog CMS", "Storefront"];
 
   const classes = useStyles(props);
 
   if (
-    !process.env.MANUAL_URL &&
     !process.env.DOCS_URL &&
     !process.env.BLOG_URL &&
     !process.env.STOREFRONT_URL
