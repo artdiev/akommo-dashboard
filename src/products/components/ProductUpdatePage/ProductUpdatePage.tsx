@@ -140,9 +140,26 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
     product?.taxType.description
   );
 
-  const initialDescription = maybe<RawDraftContentState>(() =>
+  let initialDescription = maybe<RawDraftContentState>(() =>
     JSON.parse(product.descriptionJson)
   );
+
+  if (!initialDescription?.blocks && product?.description) {
+    initialDescription = {
+      blocks: [
+        {
+          key: "initial23",
+          type: "unstyled",
+          depth: 0,
+          entityRanges: [],
+          inlineStyleRanges: [],
+          data: {},
+          text: product.description
+        }
+      ],
+      entityMap: {}
+    };
+  }
 
   const categories = getChoices(categoryChoiceList);
   const collections = getChoices(collectionChoiceList);

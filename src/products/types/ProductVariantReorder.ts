@@ -256,6 +256,7 @@ export interface ProductVariantReorder_productVariantReorder_product {
   privateMetadata: (ProductVariantReorder_productVariantReorder_product_privateMetadata | null)[];
   name: string;
   slug: string;
+  description: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;

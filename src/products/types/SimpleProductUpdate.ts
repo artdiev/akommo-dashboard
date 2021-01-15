@@ -257,6 +257,7 @@ export interface SimpleProductUpdate_productUpdate_product {
   privateMetadata: (SimpleProductUpdate_productUpdate_product_privateMetadata | null)[];
   name: string;
   slug: string;
+  description: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;

@@ -250,6 +250,7 @@ export interface ProductDetails_product {
   privateMetadata: (ProductDetails_product_privateMetadata | null)[];
   name: string;
   slug: string;
+  description: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;
