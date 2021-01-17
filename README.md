@@ -78,13 +78,13 @@ Environment variables available for configuration:
 
 #### Quick Links environment variables:
 
-- `MANUAL_URL` - URL to user documentation for the dashboard, eg: https://docs.saleor.io/docs/dashboard/index/
-
 - `DOCS_URL` - URL to other (technical) documentation.
 
 - `BLOG_URL` - URL to the blog CMS admin panel.
 
 - `STOREFRONT_URL` - URL to the main (gatsby) storefront.
+
+- `STOREFRONT_WEBHOOK` - for triggering manual rebuilds through the ui.
 
 
 
