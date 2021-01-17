@@ -2,12 +2,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "@saleor/components/ConfirmButton";
 import ExternalLink from "@saleor/components/ExternalLink";
-import useNotifier from "@saleor/hooks/useNotifier";
-import React, { useState } from "react";
+import React from "react";
 
 const useStyles = makeStyles(
   theme => ({
@@ -50,34 +46,6 @@ interface HomeQuickLinksCardProps {
 }
 
 const HomeQuickLinksCard: React.FC<HomeQuickLinksCardProps> = props => {
-  const [buttonState, setButtonState] = useState<ConfirmButtonTransitionState>(
-    "default"
-  );
-  const notify = useNotifier();
-
-  const rebuildStorefront = async () => {
-    setButtonState("loading");
-    const response = await fetch(process.env.STOREFRONT_WEBHOOK, {
-      method: "POST",
-      body: JSON.stringify({}),
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      }
-    });
-
-    if (response.ok) {
-      setButtonState("success");
-      notify({
-        status: "success",
-        title: "Rebuild Started",
-        text: "May take up to 15min"
-      });
-    } else {
-      setButtonState("error");
-    }
-  };
-
   const { children, title } = props;
   const links = [
     process.env.DOCS_URL,
@@ -91,8 +59,7 @@ const HomeQuickLinksCard: React.FC<HomeQuickLinksCardProps> = props => {
   if (
     !process.env.DOCS_URL &&
     !process.env.BLOG_URL &&
-    !process.env.STOREFRONT_URL &&
-    !process.env.STOREFRONT_WEBHOOK
+    !process.env.STOREFRONT_URL
   ) {
     return null;
   }
@@ -118,16 +85,6 @@ const HomeQuickLinksCard: React.FC<HomeQuickLinksCardProps> = props => {
               );
             }
           })}
-          {process.env.STOREFRONT_WEBHOOK && (
-            <ConfirmButton
-              className={classes.spaced}
-              disabled={buttonState !== "default"}
-              onClick={rebuildStorefront}
-              transitionState={buttonState}
-            >
-              Rebuild Storefront
-            </ConfirmButton>
-          )}
           <Typography
             className={classes.value}
             color="textPrimary"

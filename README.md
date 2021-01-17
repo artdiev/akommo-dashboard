@@ -84,10 +84,6 @@ Environment variables available for configuration:
 
 - `STOREFRONT_URL` - URL to the main (gatsby) storefront.
 
-- `STOREFRONT_WEBHOOK` - for triggering manual rebuilds through the ui.
-
-
-
 ### Development
 
 To start the development server run:
